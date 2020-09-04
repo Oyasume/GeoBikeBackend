@@ -1,0 +1,23 @@
+{
+  "geoBikeApp": {
+    "bike": {
+      "home": {
+        "title": "Bikes",
+        "createLabel": "Créer un nouveau Bike",
+        "createOrEditLabel": "Créer ou éditer un Bike",
+        "notFound": "Aucun Bike trouvé"
+      },
+      "created": "Un nouveau Bike a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Bike avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Bike avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Bike {{ id }} ?"
+      },
+      "detail": {
+        "title": "Bike"
+      },
+      "name": "Name",
+      "image": "Image"
+    }
+  }
+}

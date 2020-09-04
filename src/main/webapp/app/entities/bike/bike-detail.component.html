@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bike">
+            <h2><span jhiTranslate="geoBikeApp.bike.detail.title">Bike</span> {{ bike.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="geoBikeApp.bike.name">Name</span></dt>
+                <dd>
+                    <span>{{ bike.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="geoBikeApp.bike.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="bike.image">
+                        <a (click)="openFile(bike.imageContentType, bike.image)">
+                            <img [src]="'data:' + bike.imageContentType + ';base64,' + bike.image" style="max-width: 100%;" alt="bike image"/>
+                        </a>
+                        {{ bike.imageContentType }}, {{ byteSize(bike.image) }}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bike', bike.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
