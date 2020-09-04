@@ -1,0 +1,4 @@
+entity Bike {
+    name String,
+	image ImageBlob,
+}
