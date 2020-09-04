@@ -1,0 +1,30 @@
+version: '2'
+services:
+  geobike-app:
+    container_name: geobike-app
+    image: jhipster/jhipster:v6.10.1
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger,fast
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://geobike-mariadb:3306/geobike?useLegacyDatetimeCode=false&serverTimezone=UTC
+      - JHIPSTER_SLEEP=12 # gives time for mariadb server to start
+    volumes:
+      - ./../../../:/home/jhipster/app/
+    ports:
+        - 8080:8080
+        - 9000:9000
+        - 3001:3001
+
+  geobike-mariadb:
+    container_name: geobike-mariadb
+    image: mariadb:10.5.3
+    # volumes:
+    #     - ~/volumes/jhipster/GeoBike/mysql/:/var/lib/mysql/
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=geobike
+    ports:
+      - 3306:3306
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
