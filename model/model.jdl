@@ -2,3 +2,23 @@ entity Bike {
     name String,
 	image ImageBlob,
 }
+
+entity Travel{
+	name String,
+}
+
+entity Location{
+	name String,
+    latitude Double,
+   	longitude Double
+}
+
+relationship ManyToMany{
+	Location{travel} to Travel{location}
+}
+
+relationship ManyToOne{
+	Bike to User,
+    Travel to User,
+    Travel to Bike
+}

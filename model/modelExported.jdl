@@ -1,0 +1,46 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName GeoBike
+    blueprints []
+    buildTool gradle
+    cacheProvider ehcache
+    clientFramework angularX
+    clientPackageManager npm
+    clientTheme none
+    creationTimestamp 1599078402660
+    databaseType sql
+    devDatabaseType mariadb
+    dtoSuffix DTO
+    embeddableLaunchScript false
+    enableHibernateCache false
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhiPrefix jhi
+    jhipsterVersion "6.10.1"
+    jwtSecretKey "NWVjNDY1NDYyYWU0NWRhODkwYjlkYzg2NjNkZGJlMTVhZjNkNjBkOGM0MmE1OWYwY2FmODc1ZTYyODUwNjFlMTc4OWRiNzVkMGY0YWRlMDNjZmU3ZGZmZmJkYmZmMDc5ZDJkMDQ1MzE2N2QxYTAxZWU0ZDFkNDU4MjQxNmUwZTA="
+    languages [en, fr]
+    messageBroker false
+    nativeLanguage en
+    otherModules []
+    packageName com.mycompany.myapp
+    prodDatabaseType mariadb
+    searchEngine false
+    serverPort 8080
+    serviceDiscoveryType false
+    skipClient false
+    skipServer false
+    skipUserManagement false
+    testFrameworks []
+    useSass true
+    websocket false
+  }
+
+  entities Bike
+}
+
+entity Bike {
+  name String,
+  image ImageBlob
+}
