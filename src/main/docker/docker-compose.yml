@@ -11,6 +11,7 @@ services:
       - JHIPSTER_SLEEP=12 # gives time for mariadb server to start
     volumes:
       - ./../../../:/home/jhipster/app/
+      - /Users/diego/.gradle/:/home/jhipster/.gradle/
     ports:
         - 8080:8080
         - 9000:9000
@@ -19,8 +20,8 @@ services:
   geobike-mariadb:
     container_name: geobike-mariadb
     image: mariadb:10.5.3
-    # volumes:
-    #     - ~/volumes/jhipster/GeoBike/mysql/:/var/lib/mysql/
+    volumes:
+        - ./volumes/database/:/var/lib/mysql/
     environment:
       - MYSQL_USER=root
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
