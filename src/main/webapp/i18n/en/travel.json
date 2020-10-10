@@ -1,0 +1,25 @@
+{
+  "geoBikeApp": {
+    "travel": {
+      "home": {
+        "title": "Travels",
+        "createLabel": "Create a new Travel",
+        "createOrEditLabel": "Create or edit a Travel",
+        "notFound": "No Travels found"
+      },
+      "created": "A new Travel is created with identifier {{ param }}",
+      "updated": "A Travel is updated with identifier {{ param }}",
+      "deleted": "A Travel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Travel {{ id }}?"
+      },
+      "detail": {
+        "title": "Travel"
+      },
+      "name": "Name",
+      "location": "Location",
+      "userid": "Userid",
+      "bikeid": "Bikeid"
+    }
+  }
+}

@@ -21,6 +21,10 @@
                         {{ bike.imageContentType }}, {{ byteSize(bike.image) }}
                     </div>
                 </dd>
+                <dt><span jhiTranslate="geoBikeApp.bike.userid">Userid</span></dt>
+                <dd>
+                    {{ bike.userid?.id }}
+                </dd>
             </dl>
 
             <button type="submit"

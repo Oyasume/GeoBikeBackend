@@ -7,11 +7,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * A Bike.
+ * A Location.
  */
 @Entity
-@Table(name = "bike")
-public class Bike implements Serializable {
+@Table(name = "location")
+public class Location implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,16 +22,15 @@ public class Bike implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Lob
-    @Column(name = "image")
-    private byte[] image;
+    @Column(name = "latitude")
+    private Double latitude;
 
-    @Column(name = "image_content_type")
-    private String imageContentType;
+    @Column(name = "longitude")
+    private Double longitude;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "bikes", allowSetters = true)
-    private User userid;
+    @JsonIgnoreProperties(value = "locations", allowSetters = true)
+    private Travel travel;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -46,7 +45,7 @@ public class Bike implements Serializable {
         return name;
     }
 
-    public Bike name(String name) {
+    public Location name(String name) {
         this.name = name;
         return this;
     }
@@ -55,43 +54,43 @@ public class Bike implements Serializable {
         this.name = name;
     }
 
-    public byte[] getImage() {
-        return image;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public Bike image(byte[] image) {
-        this.image = image;
+    public Location latitude(Double latitude) {
+        this.latitude = latitude;
         return this;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
-    public String getImageContentType() {
-        return imageContentType;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public Bike imageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
+    public Location longitude(Double longitude) {
+        this.longitude = longitude;
         return this;
     }
 
-    public void setImageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
-    public User getUserid() {
-        return userid;
+    public Travel getTravel() {
+        return travel;
     }
 
-    public Bike userid(User user) {
-        this.userid = user;
+    public Location travel(Travel travel) {
+        this.travel = travel;
         return this;
     }
 
-    public void setUserid(User user) {
-        this.userid = user;
+    public void setTravel(Travel travel) {
+        this.travel = travel;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -100,10 +99,10 @@ public class Bike implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Bike)) {
+        if (!(o instanceof Location)) {
             return false;
         }
-        return id != null && id.equals(((Bike) o).id);
+        return id != null && id.equals(((Location) o).id);
     }
 
     @Override
@@ -114,11 +113,11 @@ public class Bike implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Bike{" +
+        return "Location{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", image='" + getImage() + "'" +
-            ", imageContentType='" + getImageContentType() + "'" +
+            ", latitude=" + getLatitude() +
+            ", longitude=" + getLongitude() +
             "}";
     }
 }

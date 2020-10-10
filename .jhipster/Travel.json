@@ -1,0 +1,42 @@
+{
+  "name": "Travel",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "travel",
+      "relationshipName": "location"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "travel",
+      "relationshipName": "userid",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "bike",
+      "otherEntityRelationshipName": "travel",
+      "relationshipName": "bikeid",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201009232041",
+  "entityTableName": "travel",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

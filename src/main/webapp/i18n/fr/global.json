@@ -8,6 +8,8 @@
       "entities": {
         "main": "Entités",
         "bike": "Bike",
+        "travel": "Travel",
+        "location": "Location",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

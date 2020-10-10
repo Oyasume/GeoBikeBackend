@@ -9,6 +9,8 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IBike, Bike } from 'app/shared/model/bike.model';
 import { BikeService } from './bike.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-bike-update',
@@ -16,18 +18,21 @@ import { AlertError } from 'app/shared/alert/alert-error.model';
 })
 export class BikeUpdateComponent implements OnInit {
   isSaving = false;
+  users: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [],
     image: [],
     imageContentType: [],
+    userid: [],
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected bikeService: BikeService,
+    protected userService: UserService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -36,6 +41,8 @@ export class BikeUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ bike }) => {
       this.updateForm(bike);
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -45,6 +52,7 @@ export class BikeUpdateComponent implements OnInit {
       name: bike.name,
       image: bike.image,
       imageContentType: bike.imageContentType,
+      userid: bike.userid,
     });
   }
 
@@ -95,6 +103,7 @@ export class BikeUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
       image: this.editForm.get(['image'])!.value,
+      userid: this.editForm.get(['userid'])!.value,
     };
   }
 
@@ -112,5 +121,9 @@ export class BikeUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IUser): any {
+    return item.id;
   }
 }

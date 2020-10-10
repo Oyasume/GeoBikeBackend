@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="geoBikeApp.bike.home.title">Bikes</span>
+        <span jhiTranslate="geoBikeApp.travel.home.title">Travels</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bike" [routerLink]="['/bike/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-travel" [routerLink]="['/travel/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="geoBikeApp.bike.home.createLabel">
-            Create a new Bike
+            <span  jhiTranslate="geoBikeApp.travel.home.createLabel">
+            Create a new Travel
             </span>
         </button>
     </h2>
@@ -14,51 +14,50 @@
 
     <jhi-alert></jhi-alert>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="bikes?.length === 0">
-        <span jhiTranslate="geoBikeApp.bike.home.notFound">No bikes found</span>
+    <div class="alert alert-warning" id="no-result" *ngIf="travels?.length === 0">
+        <span jhiTranslate="geoBikeApp.travel.home.notFound">No travels found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="bikes && bikes.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="travels && travels.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="geoBikeApp.bike.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="geoBikeApp.bike.image">Image</span></th>
-                    <th scope="col" ><span jhiTranslate="geoBikeApp.bike.userid">Userid</span></th>
+                    <th scope="col" ><span jhiTranslate="geoBikeApp.travel.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="geoBikeApp.travel.userid">Userid</span></th>
+                    <th scope="col" ><span jhiTranslate="geoBikeApp.travel.bikeid">Bikeid</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let bike of bikes ;trackBy: trackId">
-                    <td><a [routerLink]="['/bike', bike.id, 'view']">{{ bike.id }}</a></td>
-                    <td>{{ bike.name }}</td>
+                <tr *ngFor="let travel of travels ;trackBy: trackId">
+                    <td><a [routerLink]="['/travel', travel.id, 'view']">{{ travel.id }}</a></td>
+                    <td>{{ travel.name }}</td>
                     <td>
-                        <a *ngIf="bike.image" (click)="openFile(bike.imageContentType, bike.image)">
-                            <img [src]="'data:' + bike.imageContentType + ';base64,' + bike.image" style="max-height: 30px;" alt="bike image"/>
-                        </a>
-                        <span *ngIf="bike.image">{{ bike.imageContentType }}, {{ byteSize(bike.image) }}</span>
+                        {{ travel.userid?.id }}
                     </td>
                     <td>
-                        {{ bike.userid?.id }}
+                        <div *ngIf="travel.bikeid">
+                            <a [routerLink]="['/bike', travel.bikeid?.id, 'view']" >{{ travel.bikeid?.id }}</a>
+                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/bike', bike.id, 'view']"
+                                    [routerLink]="['/travel', travel.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/bike', bike.id, 'edit']"
+                                    [routerLink]="['/travel', travel.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(bike)"
+                            <button type="submit" (click)="delete(travel)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>

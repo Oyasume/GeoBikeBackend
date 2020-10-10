@@ -34,6 +34,14 @@
                     <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
                            formControlName="imageContentType" />
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="geoBikeApp.bike.userid" for="field_userid">Userid</label>
+                    <select class="form-control" id="field_userid" name="userid" formControlName="userid">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('userid')!.value?.id ? editForm.get('userid')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.id }}</option>
+                    </select>
+                </div>
             </div>
 
             <div>

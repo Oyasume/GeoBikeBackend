@@ -1,27 +1,30 @@
 {
-  "name": "Bike",
+  "name": "Location",
   "fields": [
     {
       "fieldName": "name",
       "fieldType": "String"
     },
     {
-      "fieldName": "image",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "image"
+      "fieldName": "latitude",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "Double"
     }
   ],
   "relationships": [
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "user",
-      "otherEntityRelationshipName": "bike",
-      "relationshipName": "userid",
+      "otherEntityName": "travel",
+      "otherEntityRelationshipName": "location",
+      "relationshipName": "travel",
       "otherEntityField": "id"
     }
   ],
-  "changelogDate": "20200904185423",
-  "entityTableName": "bike",
+  "changelogDate": "20201009232141",
+  "entityTableName": "location",
   "dto": "no",
   "pagination": "no",
   "service": "no",
