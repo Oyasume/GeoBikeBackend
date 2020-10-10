@@ -1,11 +1,2 @@
-id;name
-1;homogeneous
-2;convergence input Electronics
-3;Pants
-4;Strategist Tools
-5;eco-centric
-6;Global virtual
-7;Incredible Avon Paradigm
-8;Plaza
-9;West Virginia Music yellow
-10;visualize
+id;name;user_id;bike_id
+1;premiertrajet;5;1
