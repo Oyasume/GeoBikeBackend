@@ -13,12 +13,13 @@ entity Location{
    	longitude Double
 }
 
-relationship ManyToMany{
-	Location{travel} to Travel{location}
+relationship OneToMany{
+    Travel{location} to Location
 }
 
 relationship ManyToOne{
-	Bike to User,
-    Travel to User,
-    Travel to Bike
+	// Location{travel} to Travel,
+	Bike{userid} to User,
+    Travel{userid} to User,
+    Travel{bikeid} to Bike
 }
