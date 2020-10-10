@@ -87,7 +87,7 @@ public class TravelResource {
     @GetMapping("/travels")
     public List<Travel> getAllTravels() {
         log.debug("REST request to get all Travels");
-        return travelRepository.findAll();
+        return travelRepository.findByUserIsCurrentUser();
     }
 
     /**

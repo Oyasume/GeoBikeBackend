@@ -2,6 +2,7 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Bike;
 import com.mycompany.myapp.repository.BikeRepository;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -87,7 +88,7 @@ public class BikeResource {
     @GetMapping("/bikes")
     public List<Bike> getAllBikes() {
         log.debug("REST request to get all Bikes");
-        return bikeRepository.findAll();
+        return bikeRepository.findByUserIsCurrentUser();
     }
 
     /**

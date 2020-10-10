@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface BikeRepository extends JpaRepository<Bike, Long> {
 
-    @Query("select bike from Bike bike where bike.userid.login = ?#{principal.username}")
-    List<Bike> findByUseridIsCurrentUser();
+    @Query("select bike from Bike bike where bike.user.login = ?#{principal.username}")
+    List<Bike> findByUserIsCurrentUser();
 }

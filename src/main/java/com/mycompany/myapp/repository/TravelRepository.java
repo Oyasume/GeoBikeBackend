@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface TravelRepository extends JpaRepository<Travel, Long> {
 
-    @Query("select travel from Travel travel where travel.userid.login = ?#{principal.username}")
-    List<Travel> findByUseridIsCurrentUser();
+    @Query("select travel from Travel travel where travel.user.login = ?#{principal.username}")
+    List<Travel> findByUserIsCurrentUser();
 }
