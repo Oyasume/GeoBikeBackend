@@ -25,7 +25,7 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="geoBikeApp.bike.name">Name</span></th>
                     <th scope="col" ><span jhiTranslate="geoBikeApp.bike.image">Image</span></th>
-                    <th scope="col" ><span jhiTranslate="geoBikeApp.bike.userid">Userid</span></th>
+                    <th scope="col" ><span jhiTranslate="geoBikeApp.bike.user">User</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
                         <span *ngIf="bike.image">{{ bike.imageContentType }}, {{ byteSize(bike.image) }}</span>
                     </td>
                     <td>
-                        {{ bike.userid?.id }}
+                        {{ bike.user?.id }}
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

@@ -12,14 +12,14 @@
                 <dd>
                     <span>{{ travel.name }}</span>
                 </dd>
-                <dt><span jhiTranslate="geoBikeApp.travel.userid">Userid</span></dt>
+                <dt><span jhiTranslate="geoBikeApp.travel.user">User</span></dt>
                 <dd>
-                    {{ travel.userid?.id }}
+                    {{ travel.user?.id }}
                 </dd>
-                <dt><span jhiTranslate="geoBikeApp.travel.bikeid">Bikeid</span></dt>
+                <dt><span jhiTranslate="geoBikeApp.travel.bike">Bike</span></dt>
                 <dd>
-                    <div *ngIf="travel.bikeid">
-                        <a [routerLink]="['/bike', travel.bikeid?.id, 'view']">{{ travel.bikeid?.id }}</a>
+                    <div *ngIf="travel.bike">
+                        <a [routerLink]="['/bike', travel.bike?.id, 'view']">{{ travel.bike?.id }}</a>
                     </div>
                 </dd>
             </dl>

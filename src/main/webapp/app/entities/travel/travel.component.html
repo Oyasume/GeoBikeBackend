@@ -24,8 +24,8 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="geoBikeApp.travel.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="geoBikeApp.travel.userid">Userid</span></th>
-                    <th scope="col" ><span jhiTranslate="geoBikeApp.travel.bikeid">Bikeid</span></th>
+                    <th scope="col" ><span jhiTranslate="geoBikeApp.travel.user">User</span></th>
+                    <th scope="col" ><span jhiTranslate="geoBikeApp.travel.bike">Bike</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -34,11 +34,11 @@
                     <td><a [routerLink]="['/travel', travel.id, 'view']">{{ travel.id }}</a></td>
                     <td>{{ travel.name }}</td>
                     <td>
-                        {{ travel.userid?.id }}
+                        {{ travel.user?.id }}
                     </td>
                     <td>
-                        <div *ngIf="travel.bikeid">
-                            <a [routerLink]="['/bike', travel.bikeid?.id, 'view']" >{{ travel.bikeid?.id }}</a>
+                        <div *ngIf="travel.bike">
+                            <a [routerLink]="['/bike', travel.bike?.id, 'view']" >{{ travel.bike?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

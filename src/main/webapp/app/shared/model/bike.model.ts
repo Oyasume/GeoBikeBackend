@@ -5,9 +5,9 @@ export interface IBike {
   name?: string;
   imageContentType?: string;
   image?: any;
-  userid?: IUser;
+  user?: IUser;
 }
 
 export class Bike implements IBike {
-  constructor(public id?: number, public name?: string, public imageContentType?: string, public image?: any, public userid?: IUser) {}
+  constructor(public id?: number, public name?: string, public imageContentType?: string, public image?: any, public user?: IUser) {}
 }

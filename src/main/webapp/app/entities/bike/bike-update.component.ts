@@ -25,7 +25,7 @@ export class BikeUpdateComponent implements OnInit {
     name: [],
     image: [],
     imageContentType: [],
-    userid: [],
+    user: [],
   });
 
   constructor(
@@ -52,7 +52,7 @@ export class BikeUpdateComponent implements OnInit {
       name: bike.name,
       image: bike.image,
       imageContentType: bike.imageContentType,
-      userid: bike.userid,
+      user: bike.user,
     });
   }
 
@@ -103,7 +103,7 @@ export class BikeUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
       image: this.editForm.get(['image'])!.value,
-      userid: this.editForm.get(['userid'])!.value,
+      user: this.editForm.get(['user'])!.value,
     };
   }
 

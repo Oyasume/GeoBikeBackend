@@ -16,7 +16,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "bike",
-      "relationshipName": "userid",
+      "relationshipName": "user",
       "otherEntityField": "id"
     }
   ],

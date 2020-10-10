@@ -26,8 +26,8 @@ export class TravelUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [],
-    userid: [],
-    bikeid: [],
+    user: [],
+    bike: [],
   });
 
   constructor(
@@ -52,8 +52,8 @@ export class TravelUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: travel.id,
       name: travel.name,
-      userid: travel.userid,
-      bikeid: travel.bikeid,
+      user: travel.user,
+      bike: travel.bike,
     });
   }
 
@@ -76,8 +76,8 @@ export class TravelUpdateComponent implements OnInit {
       ...new Travel(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      userid: this.editForm.get(['userid'])!.value,
-      bikeid: this.editForm.get(['bikeid'])!.value,
+      user: this.editForm.get(['user'])!.value,
+      bike: this.editForm.get(['bike'])!.value,
     };
   }
 

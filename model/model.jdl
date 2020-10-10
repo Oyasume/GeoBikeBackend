@@ -19,7 +19,7 @@ relationship OneToMany{
 
 relationship ManyToOne{
 	// Location{travel} to Travel,
-	Bike{userid} to User,
-    Travel{userid} to User,
-    Travel{bikeid} to Bike
+	Bike{user} to User,
+    Travel{user} to User,
+    Travel{bike} to Bike
 }

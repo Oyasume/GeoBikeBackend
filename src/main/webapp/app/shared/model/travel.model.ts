@@ -6,10 +6,10 @@ export interface ITravel {
   id?: number;
   name?: string;
   locations?: ILocation[];
-  userid?: IUser;
-  bikeid?: IBike;
+  user?: IUser;
+  bike?: IBike;
 }
 
 export class Travel implements ITravel {
-  constructor(public id?: number, public name?: string, public locations?: ILocation[], public userid?: IUser, public bikeid?: IBike) {}
+  constructor(public id?: number, public name?: string, public locations?: ILocation[], public user?: IUser, public bike?: IBike) {}
 }

@@ -18,8 +18,8 @@
       },
       "name": "Name",
       "location": "Location",
-      "userid": "Userid",
-      "bikeid": "Bikeid"
+      "user": "User",
+      "bike": "Bike"
     }
   }
 }

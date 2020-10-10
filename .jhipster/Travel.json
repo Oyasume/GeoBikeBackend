@@ -17,14 +17,14 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "travel",
-      "relationshipName": "userid",
+      "relationshipName": "user",
       "otherEntityField": "id"
     },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "bike",
       "otherEntityRelationshipName": "travel",
-      "relationshipName": "bikeid",
+      "relationshipName": "bike",
       "otherEntityField": "id"
     }
   ],
