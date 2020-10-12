@@ -28,7 +28,7 @@ public class Location implements Serializable {
     @Column(name = "longitude")
     private Double longitude;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = "locations", allowSetters = true)
     private Travel travel;
 

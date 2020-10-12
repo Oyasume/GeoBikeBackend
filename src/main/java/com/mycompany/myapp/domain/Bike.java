@@ -29,9 +29,9 @@ public class Bike implements Serializable {
     @Column(name = "image_content_type")
     private String imageContentType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = "bikes", allowSetters = true)
-    private User userid;
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -81,17 +81,17 @@ public class Bike implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public User getUserid() {
-        return userid;
+    public User getUser() {
+        return user;
     }
 
-    public Bike userid(User user) {
-        this.userid = user;
+    public Bike user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setUserid(User user) {
-        this.userid = user;
+    public void setUser(User user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

@@ -1,6 +1,7 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 
@@ -25,15 +26,16 @@ public class Travel implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "travel")
+    @JsonIgnoreProperties(value = "travels", allowSetters = true)
     private Set<Location> locations = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = "travels", allowSetters = true)
-    private User userid;
+    private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = "travels", allowSetters = true)
-    private Bike bikeid;
+    private Bike bike;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -82,30 +84,30 @@ public class Travel implements Serializable {
         this.locations = locations;
     }
 
-    public User getUserid() {
-        return userid;
+    public User getUser() {
+        return user;
     }
 
-    public Travel userid(User user) {
-        this.userid = user;
+    public Travel user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setUserid(User user) {
-        this.userid = user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Bike getBikeid() {
-        return bikeid;
+    public Bike getBike() {
+        return bike;
     }
 
-    public Travel bikeid(Bike bike) {
-        this.bikeid = bike;
+    public Travel bike(Bike bike) {
+        this.bike = bike;
         return this;
     }
 
-    public void setBikeid(Bike bike) {
-        this.bikeid = bike;
+    public void setBike(Bike bike) {
+        this.bike = bike;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
