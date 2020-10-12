@@ -1,7 +1,10 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Travel;
+import com.mycompany.myapp.repository.LocationRepository;
 import com.mycompany.myapp.repository.TravelRepository;
+import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -17,6 +20,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.Travel}.
@@ -34,9 +39,13 @@ public class TravelResource {
     private String applicationName;
 
     private final TravelRepository travelRepository;
+    private final UserRepository userRepository;
+    private final LocationRepository locationRepository;
 
-    public TravelResource(TravelRepository travelRepository) {
+    public TravelResource(TravelRepository travelRepository, UserRepository userRepository, LocationRepository locationRepository) {
         this.travelRepository = travelRepository;
+        this.userRepository = userRepository;
+        this.locationRepository = locationRepository;
     }
 
     /**
@@ -52,7 +61,17 @@ public class TravelResource {
         if (travel.getId() != null) {
             throw new BadRequestAlertException("A new travel cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        travel.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin().get()).get());
+        log.debug("REST request to save Travel : {}", travel.getLocations());
+
+        travel.getLocations().forEach( location -> location.setTravel(travel));
+        log.debug("REST request to save Travel : {}", travel.getLocations());
+
+        travel.setLocations( locationRepository.saveAll(travel.getLocations()).stream().collect(Collectors.toSet()));
         Travel result = travelRepository.save(travel);
+        log.debug("REST request to save Travel : {}", travel.getLocations());
+
         return ResponseEntity.created(new URI("/api/travels/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -87,7 +106,7 @@ public class TravelResource {
     @GetMapping("/travels")
     public List<Travel> getAllTravels() {
         log.debug("REST request to get all Travels");
-        return travelRepository.findByUserIsCurrentUser();
+        return travelRepository.findByUserIsCurrentUserWithEagerRelationships();
     }
 
     /**
@@ -99,7 +118,7 @@ public class TravelResource {
     @GetMapping("/travels/{id}")
     public ResponseEntity<Travel> getTravel(@PathVariable Long id) {
         log.debug("REST request to get Travel : {}", id);
-        Optional<Travel> travel = travelRepository.findById(id);
+        Optional<Travel> travel = travelRepository.findByIdWithPositions(id);
         return ResponseUtil.wrapOrNotFound(travel);
     }
 
