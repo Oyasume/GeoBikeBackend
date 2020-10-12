@@ -4,6 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { ILocation, Location } from 'app/shared/model/location.model';
 import { LocationService } from './location.service';
@@ -23,6 +25,7 @@ export class LocationUpdateComponent implements OnInit {
     name: [],
     latitude: [],
     longitude: [],
+    date: [],
     travel: [],
   });
 
@@ -35,6 +38,11 @@ export class LocationUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ location }) => {
+      if (!location.id) {
+        const today = moment().startOf('day');
+        location.date = today;
+      }
+
       this.updateForm(location);
 
       this.travelService.query().subscribe((res: HttpResponse<ITravel[]>) => (this.travels = res.body || []));
@@ -47,6 +55,7 @@ export class LocationUpdateComponent implements OnInit {
       name: location.name,
       latitude: location.latitude,
       longitude: location.longitude,
+      date: location.date ? location.date.format(DATE_TIME_FORMAT) : null,
       travel: location.travel,
     });
   }
@@ -72,6 +81,7 @@ export class LocationUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       latitude: this.editForm.get(['latitude'])!.value,
       longitude: this.editForm.get(['longitude'])!.value,
+      date: this.editForm.get(['date'])!.value ? moment(this.editForm.get(['date'])!.value, DATE_TIME_FORMAT) : undefined,
       travel: this.editForm.get(['travel'])!.value,
     };
   }

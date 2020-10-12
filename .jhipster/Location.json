@@ -12,6 +12,10 @@
     {
       "fieldName": "longitude",
       "fieldType": "Double"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
     }
   ],
   "relationships": [

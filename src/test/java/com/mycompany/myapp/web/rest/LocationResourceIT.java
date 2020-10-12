@@ -14,6 +14,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,6 +40,9 @@ public class LocationResourceIT {
     private static final Double DEFAULT_LONGITUDE = 1D;
     private static final Double UPDATED_LONGITUDE = 2D;
 
+    private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
     @Autowired
     private LocationRepository locationRepository;
 
@@ -59,7 +64,8 @@ public class LocationResourceIT {
         Location location = new Location()
             .name(DEFAULT_NAME)
             .latitude(DEFAULT_LATITUDE)
-            .longitude(DEFAULT_LONGITUDE);
+            .longitude(DEFAULT_LONGITUDE)
+            .date(DEFAULT_DATE);
         return location;
     }
     /**
@@ -72,7 +78,8 @@ public class LocationResourceIT {
         Location location = new Location()
             .name(UPDATED_NAME)
             .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE);
+            .longitude(UPDATED_LONGITUDE)
+            .date(UPDATED_DATE);
         return location;
     }
 
@@ -98,6 +105,7 @@ public class LocationResourceIT {
         assertThat(testLocation.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testLocation.getLatitude()).isEqualTo(DEFAULT_LATITUDE);
         assertThat(testLocation.getLongitude()).isEqualTo(DEFAULT_LONGITUDE);
+        assertThat(testLocation.getDate()).isEqualTo(DEFAULT_DATE);
     }
 
     @Test
@@ -133,7 +141,8 @@ public class LocationResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(location.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.doubleValue())))
-            .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE.doubleValue())));
+            .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
     
     @Test
@@ -149,7 +158,8 @@ public class LocationResourceIT {
             .andExpect(jsonPath("$.id").value(location.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.doubleValue()))
-            .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.doubleValue()));
+            .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.doubleValue()))
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
     }
     @Test
     @Transactional
@@ -174,7 +184,8 @@ public class LocationResourceIT {
         updatedLocation
             .name(UPDATED_NAME)
             .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE);
+            .longitude(UPDATED_LONGITUDE)
+            .date(UPDATED_DATE);
 
         restLocationMockMvc.perform(put("/api/locations")
             .contentType(MediaType.APPLICATION_JSON)
@@ -188,6 +199,7 @@ public class LocationResourceIT {
         assertThat(testLocation.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testLocation.getLatitude()).isEqualTo(UPDATED_LATITUDE);
         assertThat(testLocation.getLongitude()).isEqualTo(UPDATED_LONGITUDE);
+        assertThat(testLocation.getDate()).isEqualTo(UPDATED_DATE);
     }
 
     @Test

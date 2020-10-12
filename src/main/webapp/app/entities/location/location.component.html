@@ -26,6 +26,7 @@
                     <th scope="col" ><span jhiTranslate="geoBikeApp.location.name">Name</span></th>
                     <th scope="col" ><span jhiTranslate="geoBikeApp.location.latitude">Latitude</span></th>
                     <th scope="col" ><span jhiTranslate="geoBikeApp.location.longitude">Longitude</span></th>
+                    <th scope="col" ><span jhiTranslate="geoBikeApp.location.date">Date</span></th>
                     <th scope="col" ><span jhiTranslate="geoBikeApp.location.travel">Travel</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -36,6 +37,7 @@
                     <td>{{ location.name }}</td>
                     <td>{{ location.latitude }}</td>
                     <td>{{ location.longitude }}</td>
+                    <td>{{ location.date | date:'medium' }}</td>
                     <td>
                         <div *ngIf="location.travel">
                             <a [routerLink]="['/travel', location.travel?.id, 'view']" >{{ location.travel?.id }}</a>

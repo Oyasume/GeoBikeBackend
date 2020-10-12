@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * A Location.
@@ -27,6 +28,9 @@ public class Location implements Serializable {
 
     @Column(name = "longitude")
     private Double longitude;
+
+    @Column(name = "date")
+    private Instant date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = "locations", allowSetters = true)
@@ -80,6 +84,19 @@ public class Location implements Serializable {
         this.longitude = longitude;
     }
 
+    public Instant getDate() {
+        return date;
+    }
+
+    public Location date(Instant date) {
+        this.date = date;
+        return this;
+    }
+
+    public void setDate(Instant date) {
+        this.date = date;
+    }
+
     public Travel getTravel() {
         return travel;
     }
@@ -118,6 +135,7 @@ public class Location implements Serializable {
             ", name='" + getName() + "'" +
             ", latitude=" + getLatitude() +
             ", longitude=" + getLongitude() +
+            ", date='" + getDate() + "'" +
             "}";
     }
 }
