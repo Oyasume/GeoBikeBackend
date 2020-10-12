@@ -10,7 +10,8 @@ entity Travel{
 entity Location{
 	name String,
     latitude Double,
-   	longitude Double
+   	longitude Double,
+    date Instant
 }
 
 relationship OneToMany{
